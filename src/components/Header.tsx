@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Phone, ChevronDown } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Container from './Container';
 import Button from './Button';
 
@@ -8,6 +8,7 @@ const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,9 +52,20 @@ const Header: React.FC = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
+            <Link 
+              to="/" 
+              className={`text-gray-700 hover:text-primary-500 transition-colors ${
+                location.pathname === '/' ? 'text-primary-500' : ''
+              }`}
+            >
+              Home
+            </Link>
+            
             <div className="relative group">
               <button
-                className="flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors"
+                className={`flex items-center space-x-1 text-gray-700 hover:text-primary-500 transition-colors ${
+                  location.pathname.startsWith('/services') ? 'text-primary-500' : ''
+                }`}
                 onMouseEnter={() => setIsServicesOpen(true)}
                 onMouseLeave={() => setIsServicesOpen(false)}
               >
@@ -73,13 +85,16 @@ const Header: React.FC = () => {
                   <Link
                     key={service.href}
                     to={service.href}
-                    className="block px-4 py-2 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                    className={`block px-4 py-2 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors ${
+                      location.pathname === service.href ? 'bg-primary-50 text-primary-600' : ''
+                    }`}
                   >
                     {service.name}
                   </Link>
                 ))}
               </div>
             </div>
+            
             <Link 
               to="/#process" 
               className="text-gray-700 hover:text-primary-500 transition-colors"
@@ -136,12 +151,23 @@ const Header: React.FC = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden bg-white mt-4 rounded-lg shadow-lg p-4 absolute left-4 right-4 top-14">
             <nav className="flex flex-col space-y-1">
+              <Link
+                to="/"
+                className={`px-3 py-2 text-gray-700 hover:bg-primary-50 hover:text-primary-600 rounded transition-colors ${
+                  location.pathname === '/' ? 'bg-primary-50 text-primary-600' : ''
+                }`}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Home
+              </Link>
               <div className="py-2 px-3 text-gray-900 font-medium">Services</div>
               {services.map((service) => (
                 <Link
                   key={service.href}
                   to={service.href}
-                  className="px-3 py-2 text-gray-600 hover:bg-primary-50 hover:text-primary-600 rounded transition-colors"
+                  className={`px-3 py-2 text-gray-600 hover:bg-primary-50 hover:text-primary-600 rounded transition-colors ${
+                    location.pathname === service.href ? 'bg-primary-50 text-primary-600' : ''
+                  }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {service.name}
