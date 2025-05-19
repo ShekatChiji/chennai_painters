@@ -1,29 +1,33 @@
-import React from 'react';
-import Hero from '../sections/Hero';
-import ProblemSolution from '../sections/ProblemSolution';
+import React, { useEffect } from 'react';
+import HomeHero from '../sections/HomeHero';
+import HomeProblem from '../sections/HomeProblem';
+import HomeAbout from '../sections/HomeAbout';
 import Benefits from '../sections/Benefits';
 import Process from '../sections/Process';
 import Features from '../sections/Features';
-import CostSaving from '../sections/CostSaving';
 import Contact from '../sections/Contact';
 
 const Home: React.FC = () => {
+  useEffect(() => {
+    document.title = "Chennai Painter - Professional Painting Services in Chennai";
+  }, []);
+
   return (
     <main>
-      <Hero />
+      <HomeHero />
       <div className="relative overflow-hidden">
-        <ProblemSolution />
+        <HomeProblem />
       </div>
       <div className="paint-texture relative">
-        <Benefits />
+        <HomeAbout />
       </div>
       <div className="brush-stroke relative">
-        <Process />
+        <Benefits />
       </div>
       <div className="paint-drip relative">
         <Features />
       </div>
-      <CostSaving />
+      <Process />
       <div className="paint-texture relative">
         <Contact />
       </div>
