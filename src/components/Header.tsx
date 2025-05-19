@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Phone, ChevronDown } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Container from './Container';
 import Button from './Button';
 
@@ -22,12 +23,12 @@ const Header: React.FC = () => {
   };
 
   const services = [
-    { name: 'Exterior Painting', href: '#exterior-painting' },
-    { name: 'Interior Painting', href: '#interior-painting' },
-    { name: 'Texture Painting', href: '#texture-painting' },
-    { name: 'Wood Painting', href: '#wood-painting' },
-    { name: 'Metal Painting', href: '#metal-painting' },
-    { name: 'Waterproofing Painting', href: '#waterproofing-painting' },
+    { name: 'Exterior Painting', href: '/services/exterior-painting' },
+    { name: 'Interior Painting', href: '/services/interior-painting' },
+    { name: 'Texture Painting', href: '/services/texture-painting' },
+    { name: 'Wood Painting', href: '/services/wood-painting' },
+    { name: 'Metal Painting', href: '/services/metal-painting' },
+    { name: 'Waterproofing Painting', href: '/services/waterproofing-painting' },
   ];
 
   return (
@@ -39,11 +40,13 @@ const Header: React.FC = () => {
       <Container>
         <div className="flex justify-between items-center">
           <div className="flex items-center">
-            <img 
-              src="https://i.ibb.co/p6q8DYpw/chennai-painter-logo-2.png" 
-              alt="Chennai Painter Logo" 
-              className="h-12 w-auto"
-            />
+            <Link to="/">
+              <img 
+                src="https://i.ibb.co/p6q8DYpw/chennai-painter-logo-2.png" 
+                alt="Chennai Painter Logo" 
+                className="h-12 w-auto"
+              />
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
@@ -67,40 +70,40 @@ const Header: React.FC = () => {
                 onMouseLeave={() => setIsServicesOpen(false)}
               >
                 {services.map((service) => (
-                  <a
+                  <Link
                     key={service.href}
-                    href={service.href}
+                    to={service.href}
                     className="block px-4 py-2 text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
                   >
                     {service.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
-            <a 
-              href="#process" 
+            <Link 
+              to="/#process" 
               className="text-gray-700 hover:text-primary-500 transition-colors"
             >
               Our Process
-            </a>
-            <a 
-              href="#gallery" 
+            </Link>
+            <Link 
+              to="/#gallery" 
               className="text-gray-700 hover:text-primary-500 transition-colors"
             >
               Gallery
-            </a>
-            <a 
-              href="#about" 
+            </Link>
+            <Link 
+              to="/#about" 
               className="text-gray-700 hover:text-primary-500 transition-colors"
             >
               About Us
-            </a>
-            <a 
-              href="#contact" 
+            </Link>
+            <Link 
+              to="/#contact" 
               className="text-gray-700 hover:text-primary-500 transition-colors"
             >
               Contact
-            </a>
+            </Link>
           </nav>
 
           {/* Call to Action Button */}
@@ -135,44 +138,44 @@ const Header: React.FC = () => {
             <nav className="flex flex-col space-y-1">
               <div className="py-2 px-3 text-gray-900 font-medium">Services</div>
               {services.map((service) => (
-                <a
+                <Link
                   key={service.href}
-                  href={service.href}
+                  to={service.href}
                   className="px-3 py-2 text-gray-600 hover:bg-primary-50 hover:text-primary-600 rounded transition-colors"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {service.name}
-                </a>
+                </Link>
               ))}
               <div className="border-t border-gray-100 my-2"></div>
-              <a 
-                href="#process" 
+              <Link 
+                to="/#process" 
                 className="px-3 py-2 text-gray-700 hover:bg-primary-50 hover:text-primary-600 rounded transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Our Process
-              </a>
-              <a 
-                href="#gallery" 
+              </Link>
+              <Link 
+                to="/#gallery" 
                 className="px-3 py-2 text-gray-700 hover:bg-primary-50 hover:text-primary-600 rounded transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Gallery
-              </a>
-              <a 
-                href="#about" 
+              </Link>
+              <Link 
+                to="/#about" 
                 className="px-3 py-2 text-gray-700 hover:bg-primary-50 hover:text-primary-600 rounded transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 About Us
-              </a>
-              <a 
-                href="#contact" 
+              </Link>
+              <Link 
+                to="/#contact" 
                 className="px-3 py-2 text-gray-700 hover:bg-primary-50 hover:text-primary-600 rounded transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Contact
-              </a>
+              </Link>
               <a 
                 href="tel:+919876543210" 
                 className="flex items-center px-3 py-2 text-primary-500"
